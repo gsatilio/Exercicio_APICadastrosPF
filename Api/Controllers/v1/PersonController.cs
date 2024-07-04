@@ -1,5 +1,6 @@
 ﻿using Domain.Commands.v1.CreatePerson;
 using Domain.Contracts.v1;
+using Domain.Queries.v1;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,13 +27,13 @@ public sealed class PersonController(IMediator bus, IDomainNotificationService d
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> Get(Guid id, CancellationToken token)
     {
-        var customer = await bus.Send(new GetPersonByIdQuery(id));
+        var Person = await bus.Send(new GetPersonByIdQuery(id));
 
-        if (customer is null) return NotFound();
+        if (Person is null) return NotFound();
 
         return Ok(new
         {
-            Content = customer
+            Content = Person
         });
     }
 }

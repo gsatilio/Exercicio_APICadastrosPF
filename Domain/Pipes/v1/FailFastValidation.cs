@@ -1,4 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Contracts.v1;
+using Domain.Dtos.v1;
+using FluentValidation;
+using FluentValidation.Results;
+using MediatR;
 
 namespace Domain.Pipes.v1;
 

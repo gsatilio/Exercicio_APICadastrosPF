@@ -1,10 +1,11 @@
 ﻿using Domain.Contracts.v1;
+using Infra.Repositories;
+using Infra.Repositories.Person.v1;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
-using System.Text.Json;
 
 namespace Infra;
 
@@ -28,6 +29,6 @@ public static class Bootstrapper
             .AddSingleton(clientSettings)
             .AddSingleton<IMongoClient>(client)
             .AddScoped(typeof(IRepository<,>), typeof(BaseDbRepository<,>))
-            .AddScoped<ICustomerRepository, CustomerRepository>();
+            .AddScoped<IPersonRepository, PersonRepository>();
     }
 }

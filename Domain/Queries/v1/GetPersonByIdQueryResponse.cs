@@ -1,17 +1,9 @@
-﻿using Domain.Contracts.v1;
-using Domain.ValueObjects.v1;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using Domain.ValueObjects.v1;
 
-namespace Domain.Entities.v1;
+namespace Domain.Queries.v1;
 
-public sealed class Person : IEntity<Guid>
+public class GetPersonByIdQueryResponse
 {
-    public Person()
-    {
-        Id = Guid.NewGuid();
-    }
-
-    [BsonId]
     public Guid Id { get; set; }
     public string Name { get; set; }
     public string Document { get; set; }
@@ -19,5 +11,4 @@ public sealed class Person : IEntity<Guid>
     public Address? Address { get; set; }
     public string Phone { get; set; }
     public string Email { get; set; }
-
 }
