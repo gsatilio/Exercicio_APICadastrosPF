@@ -19,7 +19,7 @@ public sealed class PersonController(IMediator bus, IDomainNotificationService d
         var person = await bus.Send(new GetPersonByDocumentQuery(model.Document));
 
         if (person != null)
-            return StatusCode((int)HttpStatusCode.BadRequest, new
+            return StatusCode((int)HttpStatusCode.Conflict, new
             {
                 Notification = "Esse CPF já existe na base de dados"
             });
