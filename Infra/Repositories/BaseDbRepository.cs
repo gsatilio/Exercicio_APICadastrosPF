@@ -31,6 +31,11 @@ public class BaseDbRepository<TEntity, TId>(IMongoClient client) : IRepository<T
         await Collection.ReplaceOneAsync(x => x.Id!.Equals(entity.Id), entity, _replaceOpt, cancellationToken);
     }
 
+    public virtual async Task DeleteAsync(TEntity entity, CancellationToken cancellationToken)
+    {
+        await Collection.DeleteOneAsync(x => x.Id.Equals(entity.Id), cancellationToken : cancellationToken);
+    }
+
     public virtual async Task<TEntity?> GetSingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate,
         CancellationToken cancellationToken)
     {
